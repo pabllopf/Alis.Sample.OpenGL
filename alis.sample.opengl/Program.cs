@@ -53,6 +53,7 @@ namespace Alis.Sample.OpenGL
                     triangleSample.Run();
                     break;
                 
+                
                 case 2:
                     CubeSample cubeSample = new CubeSample();
                     cubeSample.Run();
