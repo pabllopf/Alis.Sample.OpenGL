@@ -39,6 +39,7 @@ using Version = Alis.Core.Graphic.Sdl2.Structs.Version;
 
 namespace Alis.Sample.OpenGL
 {
+    
     /// <summary>
     ///     The triangle sample class
     /// </summary>
