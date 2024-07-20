@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.1.1] - 2024-07-20
+### :sparkles: New Features
+- [`1396ae4`](https://github.com/pabllopf/Alis.Sample.OpenGL/commit/1396ae4ab24283433db1f3b4915e6501762642c2) - new config to create builds *(commit by [@pabllopf](https://github.com/pabllopf))*
+
+### :bug: Bug Fixes
+- [`d1d530c`](https://github.com/pabllopf/Alis.Sample.OpenGL/commit/d1d530ca775d274844d8e289da0d17fbdb2a880c) - version of .net to net8.0 *(commit by [@pabllopf](https://github.com/pabllopf))*
+
+
 ## [v0.0.9] - 2024-06-02
 ### :sparkles: New Features
 - [`229b32e`](https://github.com/pabllopf/Alis.Sample.OpenGL/commit/229b32ef34ef16745983c8b91e47627889bdd026) - the spaces *(commit by [@pabllopf](https://github.com/pabllopf))*
@@ -24,3 +32,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [`7bff5d7`](https://github.com/pabllopf/Alis.Sample.OpenGL/commit/7bff5d7f6f94b0eae7cd06225f1ce179a14a04c1) - **deps**: bump actions/dependency-review-action from 3 to 4 *(commit by [@dependabot[bot]](https://github.com/apps/dependabot))*
 
 [v0.0.9]: https://github.com/pabllopf/Alis.Sample.OpenGL/compare/v0.0.0...v0.0.9
+[v0.1.1]: https://github.com/pabllopf/Alis.Sample.OpenGL/compare/v0.1.0...v0.1.1
