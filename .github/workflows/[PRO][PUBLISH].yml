@@ -193,7 +193,6 @@ jobs:
             ./.build/${{ env.APP_NAME }}_linux_x64.zip
             ./.build/${{ env.APP_NAME }}_linux_arm64.zip
             
-        
       - name: git fetch
         run: git fetch
         
