@@ -39,7 +39,6 @@ using Version = Alis.Core.Graphic.Sdl2.Structs.Version;
 
 namespace Alis.Sample.OpenGL
 {
-    
     /// <summary>
     ///     The cube sample class
     /// </summary>
@@ -49,37 +48,37 @@ namespace Alis.Sample.OpenGL
         ///     The context
         /// </summary>
         private IntPtr context;
-        
+
         /// <summary>
         ///     The ebo
         /// </summary>
         private uint ebo;
-        
+
         /// <summary>
         ///     The running
         /// </summary>
         private bool running = true;
-        
+
         /// <summary>
         ///     The shader program
         /// </summary>
         private uint shaderProgram;
-        
+
         /// <summary>
         ///     The vao
         /// </summary>
         private uint vao;
-        
+
         /// <summary>
         ///     The vbo
         /// </summary>
         private uint vbo;
-        
+
         /// <summary>
         ///     The window
         /// </summary>
         private IntPtr window;
-        
+
         /// <summary>
         ///     Draws this instance
         /// </summary>
@@ -87,20 +86,20 @@ namespace Alis.Sample.OpenGL
         {
             // Create a rotation matrix
             Matrix4X4 transform = Matrix4X4.CreateRotationZ((float) DateTime.Now.TimeOfDay.TotalSeconds); // Rotate around Z-axis
-            
+
             // rotate around X-axis
             transform = Matrix4X4.Multiply(transform, Matrix4X4.CreateRotationX((float) DateTime.Now.TimeOfDay.TotalSeconds));
-            
+
             // Get the location of the "transform" uniform variable
             int transformLocation = Gl.GlGetUniformLocation(shaderProgram, "transform");
-            
+
             // Set the value of the "transform" uniform variable
             Gl.UniformMatrix4Fv(transformLocation, transform);
-            
+
             // Draw the cube in wireframe mode
             Gl.GlDrawElements(PrimitiveType.Triangles, 36, DrawElementsType.UnsignedInt, IntPtr.Zero);
         }
-        
+
         /// <summary>
         ///     Runs this instance
         /// </summary>
@@ -108,28 +107,28 @@ namespace Alis.Sample.OpenGL
         {
             // Initialize SDL and create a window
             Sdl.Init(InitSettings.InitVideo);
-            
+
             // GET VERSION SDL2
             Version version = Sdl.GetVersion();
             Console.WriteLine(@$"SDL2 VERSION {version.major}.{version.minor}.{version.patch}");
-            
+
             // CONFIG THE SDL2 AN OPENGL CONFIGURATION
-            Sdl.SetAttributeByInt(GlAttr.SdlGlContextFlags, (int) GlContexts.SdlGlContextForwardCompatibleFlag);
-            Sdl.SetAttributeByProfile(GlAttr.SdlGlContextProfileMask, GlProfiles.SdlGlContextProfileCore);
-            Sdl.SetAttributeByInt(GlAttr.SdlGlContextMajorVersion, 3);
-            Sdl.SetAttributeByInt(GlAttr.SdlGlContextMinorVersion, 2);
-            
-            Sdl.SetAttributeByProfile(GlAttr.SdlGlContextProfileMask, GlProfiles.SdlGlContextProfileCore);
-            Sdl.SetAttributeByInt(GlAttr.SdlGlDoubleBuffer, 1);
-            Sdl.SetAttributeByInt(GlAttr.SdlGlDepthSize, 24);
-            Sdl.SetAttributeByInt(GlAttr.SdlGlAlphaSize, 8);
-            Sdl.SetAttributeByInt(GlAttr.SdlGlStencilSize, 8);
-            
+            Sdl.SetAttributeByInt(Attr.SdlGlContextFlags, (int) Contexts.SdlGlContextForwardCompatibleFlag);
+            Sdl.SetAttributeByProfile(Attr.SdlGlContextProfileMask, Profiles.SdlGlContextProfileCore);
+            Sdl.SetAttributeByInt(Attr.SdlGlContextMajorVersion, 3);
+            Sdl.SetAttributeByInt(Attr.SdlGlContextMinorVersion, 2);
+
+            Sdl.SetAttributeByProfile(Attr.SdlGlContextProfileMask, Profiles.SdlGlContextProfileCore);
+            Sdl.SetAttributeByInt(Attr.SdlGlDoubleBuffer, 1);
+            Sdl.SetAttributeByInt(Attr.SdlGlDepthSize, 24);
+            Sdl.SetAttributeByInt(Attr.SdlGlAlphaSize, 8);
+            Sdl.SetAttributeByInt(Attr.SdlGlStencilSize, 8);
+
             window = Sdl.CreateWindow("OpenGL Window", 100, 100, 800, 600, WindowSettings.WindowOpengl | WindowSettings.WindowResizable);
-            
+
             // Initialize OpenGL context
             context = Sdl.CreateContext(window);
-            
+
             // Define the vertices for the cube with color information
             float[] vertices =
             {
@@ -143,7 +142,7 @@ namespace Alis.Sample.OpenGL
                 0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, // Back top-right
                 -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f // Back top-left
             };
-            
+
             uint[] indices =
             {
                 0, 1, 3, // Front
@@ -159,17 +158,17 @@ namespace Alis.Sample.OpenGL
                 4, 5, 0, // Bottom
                 5, 1, 0
             };
-            
+
             // Create a vertex buffer object (VBO), a vertex array object (VAO), and an element buffer object (EBO)
             vbo = Gl.GenBuffer();
             vao = Gl.GenVertexArray();
             ebo = Gl.GenBuffer();
-            
+
             // Bind the VAO, VBO, and EBO
             Gl.GlBindVertexArray(vao);
             Gl.GlBindBuffer(BufferTarget.ArrayBuffer, vbo);
             Gl.GlBindBuffer(BufferTarget.ElementArrayBuffer, ebo);
-            
+
             // Buffer the vertex data
             GCHandle vHandle = GCHandle.Alloc(vertices, GCHandleType.Pinned);
             try
@@ -184,7 +183,7 @@ namespace Alis.Sample.OpenGL
                     vHandle.Free();
                 }
             }
-            
+
             // Buffer the index data
             GCHandle iHandle = GCHandle.Alloc(indices, GCHandleType.Pinned);
             try
@@ -199,7 +198,7 @@ namespace Alis.Sample.OpenGL
                     iHandle.Free();
                 }
             }
-            
+
             string vertexShaderSource = @"
             #version 330 core
             layout (location = 0) in vec3 aPos;
@@ -212,7 +211,7 @@ namespace Alis.Sample.OpenGL
                 ourColor = aColor;
             }
             ";
-            
+
             string fragmentShaderSource = @"
             #version 330 core
             in vec3 ourColor;
@@ -222,34 +221,34 @@ namespace Alis.Sample.OpenGL
                 FragColor = vec4(ourColor, 1.0f);
             }
             ";
-            
+
             uint vertexShader = Gl.GlCreateShader(ShaderType.VertexShader);
             Gl.ShaderSource(vertexShader, vertexShaderSource);
             Gl.GlCompileShader(vertexShader);
-            
+
             uint fragmentShader = Gl.GlCreateShader(ShaderType.FragmentShader);
             Gl.ShaderSource(fragmentShader, fragmentShaderSource);
             Gl.GlCompileShader(fragmentShader);
-            
+
             shaderProgram = Gl.GlCreateProgram();
             Gl.GlAttachShader(shaderProgram, vertexShader);
             Gl.GlAttachShader(shaderProgram, fragmentShader);
             Gl.GlLinkProgram(shaderProgram);
-            
+
             // Delete the shaders as they're linked into our program now and no longer necessary
             Gl.GlDeleteShader(vertexShader);
             Gl.GlDeleteShader(fragmentShader);
-            
+
             // Bind the VAO and shader program
             Gl.GlBindVertexArray(vao);
             Gl.GlUseProgram(shaderProgram);
-            
+
             // Enable the vertex attribute array for position and color
             Gl.EnableVertexAttribArray(0);
             Gl.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), IntPtr.Zero);
             Gl.EnableVertexAttribArray(1);
             Gl.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), (IntPtr) (3 * sizeof(float)));
-            
+
             while (running)
             {
                 // Event handling
@@ -260,22 +259,22 @@ namespace Alis.Sample.OpenGL
                         running = false;
                     }
                 }
-                
+
                 // Clear the screen
                 Gl.GlClear(ClearBufferMask.ColorBufferBit);
-                
+
                 Draw();
-                
+
                 // Swap the buffers to display the triangle
                 Sdl.SwapWindow(window);
             }
-            
+
             // Cleanup
             Gl.DeleteVertexArray(vao);
             Gl.DeleteBuffer(vbo);
             Gl.DeleteBuffer(ebo);
             Gl.GlDeleteProgram(shaderProgram);
-            
+
             // Cleanup SDL
             Sdl.DeleteContext(context);
             Sdl.DestroyWindow(window);
