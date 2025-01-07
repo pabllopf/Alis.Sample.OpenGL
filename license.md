@@ -1,4 +1,4 @@
-# Licence
+# License
 
 ## GNU GENERAL PUBLIC LICENSE V3
 
