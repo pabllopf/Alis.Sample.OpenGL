@@ -17,4 +17,27 @@
         <PackageReference Include="Alis" Version="*" />
         <PackageReference Include="Alis.Extension.Graphic.OpenGL" Version="*" />
     </ItemGroup>
+
+    <PropertyGroup Condition="$(Configuration) == 'Debug'">
+        <Optimize>true</Optimize>
+        <PublishTrimmed>true</PublishTrimmed>
+        <TrimUnusedDependencies>true</TrimUnusedDependencies>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition="$(Configuration) == 'Release'">
+        <Optimize>true</Optimize>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+        <OptimizationPreference>Size</OptimizationPreference>
+        <StackTraceSupport>false</StackTraceSupport>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
+        <DebugType>none</DebugType>
+        <EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
+        <TrimUnusedDependencies>true</TrimUnusedDependencies>
+        <PublishTrimmed>true</PublishTrimmed>
+        <TrimMode>Link</TrimMode>
+        <UseSystemResourceKeys>true</UseSystemResourceKeys>
+    </PropertyGroup>
 </Project>
