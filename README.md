@@ -32,6 +32,11 @@
 - [Collaborators](#-collaborators)
 ---
 
+[![](https://raw.githubusercontent.com/pabllopf/Alis.Sample.OpenGL/refs/heads/master/docs/screenshots/3d_screen_1.png)](https://raw.githubusercontent.com/pabllopf/Alis.Sample.OpenGL/refs/heads/master/docs/screenshots/3d_screen_1.png) 
+[![](https://raw.githubusercontent.com/pabllopf/Alis.Sample.OpenGL/refs/heads/master/docs/screenshots/3d_screen_2.png)](https://raw.githubusercontent.com/pabllopf/Alis.Sample.OpenGL/refs/heads/master/docs/screenshots/3d_screen_2.png)
+
+---
+
 ## 📖 Description
 
 Alis is a cross-platform framework designed to help developers create video games effortlessly. It includes a wide range of packages tailored for different functionalities like graphics, physics, networking, audio, and extensions for cloud integrations, AI, and more.
