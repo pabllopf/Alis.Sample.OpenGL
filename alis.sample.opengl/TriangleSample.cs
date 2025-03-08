@@ -30,12 +30,11 @@
 using System;
 using System.Runtime.InteropServices;
 using Alis.Core.Aspect.Math.Matrix;
-using Alis.Core.Graphic.Sdl2;
-using Alis.Core.Graphic.Sdl2.Enums;
-using Alis.Core.Graphic.Sdl2.Structs;
-using Alis.Extension.Graphic.OpenGL;
-using Alis.Extension.Graphic.OpenGL.Enums;
-using Version = Alis.Core.Graphic.Sdl2.Structs.Version;
+using Alis.Core.Graphic.OpenGL;
+using Alis.Core.Graphic.OpenGL.Enums;
+using Alis.Extension.Graphic.Sdl2;
+using Alis.Extension.Graphic.Sdl2.Enums;
+using Alis.Extension.Graphic.Sdl2.Structs;
 
 namespace Alis.Sample.OpenGL
 {
@@ -99,11 +98,7 @@ namespace Alis.Sample.OpenGL
         {
             // Initialize SDL and create a window
             Sdl.Init(InitSettings.InitVideo);
-
-            // GET VERSION SDL2
-            Version version = Sdl.GetVersion();
-            Console.WriteLine(@$"SDL2 VERSION {version.major}.{version.minor}.{version.patch}");
-
+            
             // CONFIG THE SDL2 AN OPENGL CONFIGURATION
             Sdl.SetAttributeByInt(Attr.SdlGlContextFlags, (int) Contexts.SdlGlContextForwardCompatibleFlag);
             Sdl.SetAttributeByProfile(Attr.SdlGlContextProfileMask, Profiles.SdlGlContextProfileCore);

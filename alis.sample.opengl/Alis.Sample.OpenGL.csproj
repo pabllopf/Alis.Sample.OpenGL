@@ -21,10 +21,8 @@
               CopyToPublishDirectory="Always"/>
     </ItemGroup>
     
-    
-    
     <ItemGroup>
         <PackageReference Include="Alis" Version="*" />
-        <PackageReference Include="Alis.Extension.Graphic.OpenGL" Version="*" />
+        <PackageReference Include="Alis.Extension.Graphic.Sdl2" Version="*" />
     </ItemGroup>
 </Project>
