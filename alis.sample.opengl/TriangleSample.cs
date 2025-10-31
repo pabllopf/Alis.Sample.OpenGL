@@ -29,6 +29,8 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Alis.Core.Aspect.Data.Dll;
+using Alis.Core.Aspect.Logging;
 using Alis.Core.Aspect.Math.Matrix;
 using Alis.Core.Graphic.OpenGL;
 using Alis.Core.Graphic.OpenGL.Enums;
@@ -96,8 +98,31 @@ namespace Alis.Sample.OpenGL
         /// </summary>
         public void Run()
         {
-            // Initialize SDL and create a window
-            Sdl.Init(InitSettings.InitVideo);
+            if (Sdl.Init(InitSettings.InitEvents) < 0 || Sdl.Init(InitSettings.InitVideo) < 0)
+            {
+                Logger.Exception($@"There was an issue initializing SDL. {Sdl.GetError()}");
+            }
+            else
+            {
+                Logger.Info("OnInit all");
+            }
+            
+            if (EmbeddedDllClass.GetCurrentPlatform() == OSPlatform.Windows)
+            {
+                Sdl.SetHint(Hint.HintRenderDriver, "opengl");
+            }
+
+            if (EmbeddedDllClass.GetCurrentPlatform() == OSPlatform.OSX)
+            {
+                Sdl.SetHint(Hint.HintRenderDriver, "opengl");
+            }
+
+            if (EmbeddedDllClass.GetCurrentPlatform() == OSPlatform.Linux)
+            {
+                Sdl.SetHint(Hint.HintRenderDriver, "opengl");
+            }
+            
+            Gl.Initialize(Sdl.GetProcAddress);
             
             // CONFIG THE SDL2 AN OPENGL CONFIGURATION
             Sdl.SetAttributeByInt(Attr.SdlGlContextFlags, (int) Contexts.SdlGlContextForwardCompatibleFlag);
