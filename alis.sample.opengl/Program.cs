@@ -36,17 +36,16 @@ using Alis.Sample.OpenGL.Samples;
 namespace Alis.Sample.OpenGL
 {
     /// <summary>
-    ///     The program class (entry point) for the OpenGL samples.
+    ///     The program class for the OpenGL samples.
     /// </summary>
     internal static class Program
     {
+        
         /// <summary>
         ///     Main entry point.
         /// </summary>
         private static void Main()
         {
-            // Select the native platform implementation based on the compilation symbols.
-            // Each platform provides window/context creation, input and GL function resolution.
             INativePlatform platform;
 #if osxarm64 || osxarm || osxx64 || osx || osxarm || osxx64 || osx
             platform = new Alis.Core.Graphic.Platforms.Osx.MacNativePlatform();
