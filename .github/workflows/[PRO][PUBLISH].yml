@@ -96,7 +96,7 @@ jobs:
                            -DestinationPath "build_output/${{ env.APP_NAME }}_${{ matrix.rid }}.zip"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.APP_NAME }}_${{ matrix.rid }}
           path: ./**/${{ env.APP_NAME }}_${{ matrix.rid }}.zip
