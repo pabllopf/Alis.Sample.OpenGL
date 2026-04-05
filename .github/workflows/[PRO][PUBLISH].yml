@@ -3,9 +3,11 @@ name: "[PRO][PUBLISH]"
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - '.git/**'
 
 env:
-  APP_NAME: "OpenGlSamples"
+  APP_NAME: "FlappyBird"
 
 jobs:
 
@@ -76,11 +78,11 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: 10.0.x
 
       - name: Publish NativeAOT binary
         run: |
-          dotnet publish -r ${{ matrix.rid }} -c Release -f net9.0 -o ./build_output/${{ matrix.rid }}_${{ matrix.arch }}/ -p:AssemblyVersion=$VERSION -p:PublishAot=true
+          dotnet publish -r ${{ matrix.rid }} -c Release -f net10.0 -o ./build_output/${{ matrix.rid }}_${{ matrix.arch }}/ -p:AssemblyVersion=$VERSION -p:PublishAot=true
         env:
           DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
@@ -108,7 +110,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-
+        
       - name: Get version and increment
         id: version
         run: |
@@ -132,7 +134,7 @@ jobs:
           path: ./artifacts
 
       - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v6
+        uses: crazy-max/ghaction-import-gpg@v7
         with:
           gpg_private_key: ${{ secrets.BOT_GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.BOT_GPG_PASSPHRASE }}

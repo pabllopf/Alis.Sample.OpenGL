@@ -73,5 +73,7 @@
 
 
 .config/Config.props
-.config/Config.props
+
+!docs/
+!docs/**
 
